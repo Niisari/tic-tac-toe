@@ -1,4 +1,4 @@
-    // ===== Game Board Module =====
+// ===== Game Board Module =====
     const gameBoard = (function () {
         let board = ['', '', '', '', '', '', '', '', ''];
 
@@ -67,11 +67,41 @@
         return { getCurrentPlayer, switchTurn, checkWinner, resetGame, isGameOver };
     })();
 
+    // ===== Stats Controller =====
+    const statsController = (function() {
+        let stats = {
+            player1Wins: 0,
+            player2Wins: 0,
+            draws: 0,
+            totalGames: 0
+        };
+
+        const addWin = (playerMarker) => {
+            if (playerMarker === 'X') stats.player1Wins++;
+            else stats.player2Wins++;
+            stats.totalGames++;
+        };
+
+        const addDraw = () => {
+            stats.draws++;
+            stats.totalGames++;
+        };
+
+        const resetStats = () => {
+            stats = { player1Wins:0, player2Wins:0, draws:0, totalGames:0 };
+        };
+
+        const getStats = () => stats;
+
+        return { addWin, addDraw, resetStats, getStats };
+    })();
+
     // ===== Display Controller =====
     const displayController = (function () {
         const boardElement = document.getElementById('game-board');
         const statusMessage = document.getElementById('status-message');
         const restartButton = document.getElementById('restart-button');
+        const resetStatsButton = document.getElementById('reset-stats');
 
         const render = () => {
             boardElement.innerHTML = '';
@@ -83,7 +113,6 @@
                 square.textContent = value;
                 if (value === '') square.classList.add('empty');
 
-                // hover data (optional, works for CSS attr)
                 square.dataset.hover = gameController.getCurrentPlayer().marker;
 
                 square.addEventListener('click', () => handleMove(index));
@@ -114,8 +143,10 @@
 
             if (result === 'draw') {
                 statusMessage.textContent = "It's a draw!";
+                statsController.addDraw();
             } else if (result) {
                 statusMessage.textContent = `${result} wins!`;
+                statsController.addWin(result);
             } else {
                 gameController.switchTurn();
                 statusMessage.textContent =
@@ -123,12 +154,22 @@
             }
 
             render();
+            updateStatsDisplay();
+        };
+
+        const updateStatsDisplay = () => {
+            const stats = statsController.getStats();
+            document.getElementById('player1-stats').textContent = `Player X Wins: ${stats.player1Wins}`;
+            document.getElementById('player2-stats').textContent = `Player O Wins: ${stats.player2Wins}`;
+            document.getElementById('draws').textContent = `Draws: ${stats.draws}`;
+            document.getElementById('total-games').textContent = `Total Games: ${stats.totalGames}`;
         };
 
         const init = () => {
             statusMessage.textContent =
                 `${gameController.getCurrentPlayer().marker}'s turn`;
             render();
+            updateStatsDisplay();
         };
 
         restartButton.addEventListener('click', () => {
@@ -136,6 +177,11 @@
             statusMessage.textContent =
                 `${gameController.getCurrentPlayer().marker}'s turn`;
             render();
+        });
+
+        resetStatsButton.addEventListener('click', () => {
+            statsController.resetStats();
+            updateStatsDisplay();
         });
 
         return { init };
