@@ -9,23 +9,28 @@
 <body>
     
     <div class="game__container">
-        <h1 class="game__title">Tic Tac Toe</h1>
-        <div id="game-board" class="game__board" role="grid" aria-label="Tic Tac Toe Game Board">
+        <div class="game__section">
+            <h1 class="game__title">Tic Tac Toe</h1>
+            <div id="game-board" class="game__board" role="grid" aria-label="Tic Tac Toe Game Board">
 
-        </div>
+            </div>
 
-        <div id="game-info" class="game__info">
-            <h2 id="status-message" aria-live="polite" class="status__message"></h2>
-            <button id="restart-button" class="restart__btn">Restart Game</button>
+            <div id="game-info" class="game__info">
+                <h2 id="status-message" aria-live="polite" class="status__message"></h2>
+                <button id="restart-button" class="restart__btn">Restart Game</button>
+            </div>
         </div>
         
         <div class="stats__container">
-            <h2 class="stats__title">Game Stats</h2>
-            <p id="player1-stats" class="cat__stats">Cat 🐱 Wins: 0</p>
-            <p id="player2-stats" class="dog__stats">Dog 🐶 Wins: 0</p>
-            <p id="draws" class="draw__stats">Draws: 0</p>
-            <p id="total-games" class="total__games">Total Games: 0</p>
-            <button id="reset-stats" class="reset__stats">Reset Stats</button>
+            <h2 class="stats__title">Game Stats:</h2>
+            <div class="stats__info">
+                <p id="player1-stats" class="cat__stats">Cat 🐱 Wins: 0</p>
+                <p id="player2-stats" class="dog__stats">Dog 🐶 Wins: 0</p>
+                <p id="draws" class="draw__stats">Draws: 0</p>
+                <p id="total-games" class="total__games">Total Games: 0</p>
+
+                <button id="reset-stats" class="reset__stats">Reset Stats</button>
+            </div>
         </div>
 
     </div>

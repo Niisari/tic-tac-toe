@@ -22,8 +22,8 @@
 
     // ===== Game Controller =====
     const gameController = (function () {
-        const player1 = Player('Player 1', '🐱');
-        const player2 = Player('Player 2', '🐶');
+        const player1 = Player('Player1', '🐱');
+        const player2 = Player('Player2', '🐶');
         let currentPlayer = player1;
         let gameOver = false;
 
@@ -159,8 +159,8 @@
 
         const updateStatsDisplay = () => {
             const stats = statsController.getStats();
-            document.getElementById('player1-stats').textContent = `Player X Wins: ${stats.player1Wins}`;
-            document.getElementById('player2-stats').textContent = `Player O Wins: ${stats.player2Wins}`;
+            document.getElementById('player1-stats').textContent = `Dog 🐶 Wins: ${stats.player1Wins}`;
+            document.getElementById('player2-stats').textContent = `Cat 🐱 Wins: ${stats.player2Wins}`;
             document.getElementById('draws').textContent = `Draws: ${stats.draws}`;
             document.getElementById('total-games').textContent = `Total Games: ${stats.totalGames}`;
         };
