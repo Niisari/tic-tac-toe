@@ -6,6 +6,16 @@
     box-sizing: border-box;
 }   
 
+body {
+    font-family: system-ui, sans-serif;
+}
+
+button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 .game__container {
     display: flex;
     flex-direction: column;
@@ -14,22 +24,43 @@
 
     gap: 1rem;
     min-height: 100vh;
+
+    .game__title {
+        margin-top: 1rem;
+        color: #5B5EA6;
+    }
+
+    .game__info {
+        display: flex;
+        align-items: center;
+
+        gap: 1rem;
+
+        .status__message {
+            color: #5B5EA6;
+        }
+
+        .restart__btn {
+            padding: 0.5rem 0.5rem;
+            background-color: #5B5EA6;
+            color: #ffffff;
+            border-radius: 0.5rem;
+        }
+    }
 }   
 
 .game__board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    max-width: 400px;
-
     background-color: #f0f0f0;
-    padding: 20px;
+    gap: 1px;
 
     .square {
         width: 100px;
         height: 100px;
         background-color: #ffffff;
-        border: 2px solid #000000;
+        color: #5B5EA6;
+        border: 2px solid #5B5EA6;
         display: flex;
         align-items: center;
         justify-content: center;
